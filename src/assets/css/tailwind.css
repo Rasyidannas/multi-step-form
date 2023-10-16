@@ -1,0 +1,107 @@
+@font-face {
+  font-family: "Ubuntu Regular";
+  src: url("assets/fonts/Ubuntu-Regular.ttf");
+  src: url("assets/fonts/Ubuntu-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu Medium";
+  src: url("assets/fonts/Ubuntu-Medium.ttf");
+  src: url("assets/fonts/Ubuntu-Medium.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu Bold";
+  src: url("assets/fonts/Ubuntu-Bold.ttf");
+  src: url("assets/fonts/Ubuntu-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    /* 1rem = 16px */
+    font-size: 100%;
+  }
+
+  body {
+    font-family: "Ubuntu Regular", sans-serif;
+    font-weight: normal;
+    background-color: #fafbff;
+    padding: 3.5rem 2rem;
+  }
+
+  h1 {
+    font-family: "Ubuntu Bold", sans-serif;
+    font-weight: bold;
+    font-size: 3.5rem;
+  }
+
+  h2 {
+    font-family: "Ubuntu Medium", sans-serif;
+    letter-spacing: 0.05rem;
+    font-size: 3rem;
+  }
+
+  h3 {
+    font-family: "Ubuntu Medium", sans-serif;
+    letter-spacing: 0.05rem;
+    font-size: 2.5rem;
+  }
+
+  h4 {
+    font-family: "Ubuntu Medium", sans-serif;
+    letter-spacing: 0.05rem;
+    font-size: 2rem;
+  }
+
+  h4 {
+    font-family: "Ubuntu Medium", sans-serif;
+    letter-spacing: 0.05rem;
+    font-size: 1.75rem;
+  }
+
+  h5 {
+    font-family: "Ubuntu Medium", sans-serif;
+    letter-spacing: 0.05rem;
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-family: "Ubuntu Regular", sans-serif;
+    letter-spacing: 0.05rem;
+    font-size: 1rem;
+  }
+
+  li {
+    list-style: none;
+  }
+}
+
+@layer components {
+  .small-text {
+    font-family: "Ubuntu Regular", sans-serif;
+    font-size: 0.75rem;
+  }
+
+  .app {
+    padding: 1rem;
+    background-color: white;
+  }
+
+  .side-nav {
+    background-image: url("assets/images/bg-sidebar-desktop.svg");
+    background-repeat: no-repeat;
+  }
+}
+
+@layer utilities {
+}
