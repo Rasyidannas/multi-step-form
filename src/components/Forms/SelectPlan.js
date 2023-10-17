@@ -9,10 +9,10 @@ const listPlan = [
   { name: "pro", price: 15, icon: ProIcon, value: "pro" },
 ];
 
-function SelectPlan() {
+function SelectPlan(props) {
   const [checkedYearly, setCheckedYearly] = useState(false);
   return (
-    <div className="flex flex-col gap-8">
+    <div className={`flex flex-col gap-8 w-full ${props.className}`}>
       <div>
         <h4 className="font-bold text-marine-blue">Select your plan</h4>
         <p className="text-cool-gray">
@@ -20,20 +20,20 @@ function SelectPlan() {
         </p>
       </div>
 
-      <div className="flex gap-4">
-        {listPlan.map((item) => {
+      <div className="flex justify-between">
+        {listPlan.map((item, i) => {
           return (
-            <div className="">
+            <div key={i} className="flex flex-col w-[30%]">
               <input
                 type="radio"
                 id={item.name}
                 name="plan"
                 value={item.value}
-                className="peer"
+                className="peer hidden"
               />
               <label
                 htmlFor={item.name}
-                className=" border border-cool-gray rounded p-4 peer-checked:border-marine-blue"
+                className="border border-cool-gray rounded p-4 peer-checked:border-marine-blue peer-checked:bg-alabaster"
               >
                 <item.icon />
                 <div className="pt-8 text-marine-blue capitalize">

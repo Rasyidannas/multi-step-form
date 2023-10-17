@@ -87,6 +87,11 @@
 }
 
 @layer components {
+  .btn-text {
+    font-family: "Ubuntu Medium", sans-serif;
+    font-size: 0.9rem;
+  }
+
   .small-text {
     font-family: "Ubuntu Regular", sans-serif;
     font-size: 0.75rem;
@@ -100,6 +105,16 @@
   .side-nav {
     background-image: url("assets/images/bg-sidebar-desktop.svg");
     background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  /* PickAddOns component */
+  .pick-checkbox:checked ~ label > .custom-checkbox {
+    background-color: #473dff !important;
+    background-image: url("assets/images/icon-checkmark.svg");
+    background-size: 1.1rem;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }
 

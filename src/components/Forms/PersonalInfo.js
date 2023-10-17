@@ -1,7 +1,7 @@
 import useInput from "../../hooks/use-input";
 import TextField from "../UI/TextField";
 
-function PersonalInfo() {
+function PersonalInfo(props) {
   //validation for input
   const isName = (value) => value.match(/^[A-Za-z\s]+$/);
   const isEmail = (value) =>
@@ -40,7 +40,7 @@ function PersonalInfo() {
   } = useInput(isPhone);
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className={`flex flex-col gap-8 w-full ${props.className}`}>
       <div>
         <h4 className="font-bold text-marine-blue">Personal info</h4>
         <p className="text-cool-gray">
