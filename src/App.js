@@ -47,20 +47,20 @@ export default function App() {
           >
             Go Back
           </Button>
-          <Button
-            type="button"
-            className="bg-marine-blue text-white"
-            onClick={nextHandler}
-          >
-            Next Step
-          </Button>
-          <Button
-            type="sub"
-            className="bg-marine-blue text-white"
-            onClick={nextHandler}
-          >
-            Next Step
-          </Button>
+          {formActive !== 3 && (
+            <Button
+              type="button"
+              className="bg-marine-blue text-white"
+              onClick={nextHandler}
+            >
+              Next Step
+            </Button>
+          )}
+          {formActive === 3 && (
+            <Button type="submit" className="bg-marine-blue text-white">
+              Confirm
+            </Button>
+          )}
         </div>
       </form>
     </Card>
