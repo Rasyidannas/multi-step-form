@@ -23,9 +23,9 @@ export default function App() {
   };
 
   return (
-    <Card className="app rounded-3xl mx-auto h-screen w-4/5 flex">
+    <Card className="flex w-4/5 h-screen mx-auto app rounded-3xl">
       <SideNav className="flex-none" currForm={formActive} />
-      <form className="mt-8 mb-4 mx-12 w-8/12 flex flex-col items-end justify-between flex-1 overflow-hidden">
+      <form className="flex flex-col items-end justify-between flex-1 w-8/12 mx-12 mt-8 mb-4 overflow-hidden">
         <div
           className="flex w-full transition-all duration-300"
           style={{ transform: `translateX(-${formActive * 100}%)` }}
@@ -39,25 +39,27 @@ export default function App() {
           />
         </div>
         {/* <SuccessForm /> */}
-        <div className="w-full flex justify-between">
-          <Button
-            type="button"
-            className="text-cool-gray"
-            onClick={prevHandler}
-          >
-            Go Back
-          </Button>
+        <div className="flex justify-between w-full">
+          {formActive !== 0 && (
+            <Button
+              type="button"
+              className="text-cool-gray"
+              onClick={prevHandler}
+            >
+              Go Back
+            </Button>
+          )}
           {formActive !== 3 && (
             <Button
               type="button"
-              className="bg-marine-blue text-white"
+              className="ml-auto text-white bg-marine-blue"
               onClick={nextHandler}
             >
               Next Step
             </Button>
           )}
           {formActive === 3 && (
-            <Button type="submit" className="bg-marine-blue text-white">
+            <Button type="submit" className="text-white bg-marine-blue">
               Confirm
             </Button>
           )}
