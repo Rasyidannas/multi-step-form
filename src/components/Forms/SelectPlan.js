@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import useRadio from "../../hooks/use-radio";
+import FormContext from "../../store/form-context";
+
 import AdvancedIcon from "../Icons/Advanced";
 import ArcadeIcon from "../Icons/Arcade";
 import ProIcon from "../Icons/Pro";
+import TogglePayment from "./TogglePayment";
 
 const listPlan = [
   { name: "arcade", price: 9, icon: ArcadeIcon, value: "arcade" },
@@ -10,7 +14,22 @@ const listPlan = [
 ];
 
 function SelectPlan(props) {
-  const [checkedYearly, setCheckedYearly] = useState(false);
+  // custom hooks for plans
+  const {
+    value: planValue,
+    isValid: planIsValid,
+    hasEmpty: planHasEmpty,
+    valueChangeHandler: planChangeHandler,
+  } = useRadio();
+
+  //this is context
+  const formCtx = useContext(FormContext);
+
+  //store handler
+  const planStoreHandler = (data) => {
+    // formCtx.onStore(data)
+  };
+
   return (
     <div className={`flex flex-col gap-8 w-full ${props.className}`}>
       <div>
@@ -29,14 +48,15 @@ function SelectPlan(props) {
                 id={item.name}
                 name="plan"
                 value={item.value}
-                className="peer hidden"
+                className="hidden peer"
+                onChange={planChangeHandler}
               />
               <label
                 htmlFor={item.name}
-                className="border border-cool-gray rounded p-4 peer-checked:border-marine-blue peer-checked:bg-alabaster"
+                className="p-4 border rounded border-cool-gray peer-checked:border-marine-blue peer-checked:bg-alabaster"
               >
                 <item.icon />
-                <div className="pt-8 text-marine-blue capitalize">
+                <div className="pt-8 capitalize text-marine-blue">
                   {item.name}
                 </div>
                 <div className="small-text text-cool-gray">
@@ -49,28 +69,7 @@ function SelectPlan(props) {
       </div>
 
       {/* Switch toggle Montly or Yearly */}
-      <div className="w-full bg-alabaster p-4 rounded flex justify-center gap-4">
-        <label htmlFor="toggle" className="text-marine-blue">
-          Monthly
-        </label>
-        <input
-          id="toggle"
-          className="hidden"
-          type="checkbox"
-          checked={checkedYearly}
-          onChange={() => setCheckedYearly((prevState) => !prevState)}
-        />
-        <div className="p-1 bg-marine-blue rounded-2xl w-12 relative">
-          <div
-            className={`w-4 h-4 bg-white rounded-2xl absolute ${
-              checkedYearly === true ? "right-1" : "left-1"
-            }`}
-          ></div>
-        </div>
-        <label htmlFor="toggle" className="text-marine-blue">
-          Yearly
-        </label>
-      </div>
+      <TogglePayment />
     </div>
   );
 }

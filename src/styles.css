@@ -719,6 +719,11 @@ li {
   right: 0.25rem;
 }
 
+.mx-12 {
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -729,17 +734,12 @@ li {
   margin-bottom: auto;
 }
 
-.mx-12 {
-  margin-left: 3rem;
-  margin-right: 3rem;
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
 .ml-auto {
   margin-left: auto;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
 }
 
 .mt-8 {
@@ -810,26 +810,16 @@ li {
   width: 2rem;
 }
 
+.w-8\/12 {
+  width: 66.666667%;
+}
+
 .w-\[30\%\] {
   width: 30%;
 }
 
 .w-full {
   width: 100%;
-}
-
-.w-fit {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.w-8\/12 {
-  width: 66.666667%;
-}
-
-.w-9\/12 {
-  width: 75%;
 }
 
 .flex-1 {
@@ -881,22 +871,6 @@ li {
   gap: 2rem;
 }
 
-.gap-12 {
-  gap: 3rem;
-}
-
-.gap-24 {
-  gap: 6rem;
-}
-
-.gap-28 {
-  gap: 7rem;
-}
-
-.gap-1 {
-  gap: 0.25rem;
-}
-
 .overflow-hidden {
   overflow: hidden;
 }
@@ -942,6 +916,11 @@ li {
   background-color: rgb(150 153 171 / var(--tw-bg-opacity));
 }
 
+.bg-light-blue {
+  --tw-bg-opacity: 1;
+  background-color: rgb(191 226 253 / var(--tw-bg-opacity));
+}
+
 .bg-marine-blue {
   --tw-bg-opacity: 1;
   background-color: rgb(2 41 90 / var(--tw-bg-opacity));
@@ -952,17 +931,16 @@ li {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-light-blue {
-  --tw-bg-opacity: 1;
-  background-color: rgb(191 226 253 / var(--tw-bg-opacity));
-}
-
 .\!p-0 {
   padding: 0px !important;
 }
 
 .p-1 {
   padding: 0.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
 }
 
 .p-4 {
@@ -975,15 +953,6 @@ li {
 
 .p-8 {
   padding: 2rem;
-}
-
-.p-2 {
-  padding: 0.5rem;
-}
-
-.px-12 {
-  padding-left: 3rem;
-  padding-right: 3rem;
 }
 
 .px-4 {
@@ -999,10 +968,6 @@ li {
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-}
-
-.pb-4 {
-  padding-bottom: 1rem;
 }
 
 .pt-8 {
@@ -1052,11 +1017,6 @@ li {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.\!text-marine-blue {
-  --tw-text-opacity: 1 !important;
-  color: rgb(2 41 90 / var(--tw-text-opacity)) !important;
 }
 
 .underline {

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FormProvider from "./store/FormProvider";
 
 import "./styles.css";
 import SideNav from "./components/Layout/SideNav";
@@ -23,48 +24,50 @@ export default function App() {
   };
 
   return (
-    <Card className="flex w-4/5 h-screen mx-auto app rounded-3xl">
-      <SideNav className="flex-none" currForm={formActive} />
-      <form className="flex flex-col items-end justify-between flex-1 w-8/12 mx-12 mt-8 mb-4 overflow-hidden">
-        <div
-          className="flex w-full transition-all duration-300"
-          style={{ transform: `translateX(-${formActive * 100}%)` }}
-        >
-          <PersonalInfo className="flex-none p-2" />
-          <SelectPlan className="flex-none p-2" />
-          <PickAddOns className="flex-none p-2" />
-          <FinishingUp
-            className="flex-none p-2"
-            onChange={() => setFormActive(1)}
-          />
-        </div>
-        {/* <SuccessForm /> */}
-        <div className="flex justify-between w-full">
-          {formActive !== 0 && (
-            <Button
-              type="button"
-              className="text-cool-gray"
-              onClick={prevHandler}
-            >
-              Go Back
-            </Button>
-          )}
-          {formActive !== 3 && (
-            <Button
-              type="button"
-              className="ml-auto text-white bg-marine-blue"
-              onClick={nextHandler}
-            >
-              Next Step
-            </Button>
-          )}
-          {formActive === 3 && (
-            <Button type="submit" className="text-white bg-marine-blue">
-              Confirm
-            </Button>
-          )}
-        </div>
-      </form>
-    </Card>
+    <FormProvider>
+      <Card className="flex w-4/5 h-screen mx-auto app rounded-3xl">
+        <SideNav className="flex-none" currForm={formActive} />
+        <form className="flex flex-col items-end justify-between flex-1 w-8/12 mx-12 mt-8 mb-4 overflow-hidden">
+          <div
+            className="flex w-full transition-all duration-300"
+            style={{ transform: `translateX(-${formActive * 100}%)` }}
+          >
+            <PersonalInfo className="flex-none p-2" />
+            <SelectPlan className="flex-none p-2" />
+            <PickAddOns className="flex-none p-2" />
+            <FinishingUp
+              className="flex-none p-2"
+              onChange={() => setFormActive(1)}
+            />
+          </div>
+          {/* <SuccessForm /> */}
+          <div className="flex justify-between w-full">
+            {formActive !== 0 && (
+              <Button
+                type="button"
+                className="text-cool-gray"
+                onClick={prevHandler}
+              >
+                Go Back
+              </Button>
+            )}
+            {formActive !== 3 && (
+              <Button
+                type="button"
+                className="ml-auto text-white bg-marine-blue"
+                onClick={nextHandler}
+              >
+                Next Step
+              </Button>
+            )}
+            {formActive === 3 && (
+              <Button type="submit" className="text-white bg-marine-blue">
+                Confirm
+              </Button>
+            )}
+          </div>
+        </form>
+      </Card>
+    </FormProvider>
   );
 }

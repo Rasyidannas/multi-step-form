@@ -1,7 +1,18 @@
+import { useContext, useEffect } from "react";
+import FormContext from "../../store/form-context";
+
 import useInput from "../../hooks/use-input";
 import TextField from "../UI/TextField";
 
 function PersonalInfo(props) {
+  //this is context
+  const formCtx = useContext(FormContext);
+
+  //store handler
+  const personalInfoStoreHandler = (data) => {
+    formCtx.infoStore(data);
+  };
+
   //validation for input
   const isName = (value) => value.match(/^[A-Za-z\s]+$/);
   const isEmail = (value) =>
@@ -38,6 +49,19 @@ function PersonalInfo(props) {
     inputBlurHandler: phoneBlurHandler,
     reset: phoneReset,
   } = useInput(isPhone);
+
+  //this for store data to Context
+  useEffect(() => {
+    if (nameIsValid && emailIsValid && phoneIsValid) {
+      const data = {
+        name: nameValue,
+        email: emailValue,
+        phone: phoneValue,
+      };
+
+      personalInfoStoreHandler(data);
+    }
+  }, [nameIsValid, emailIsValid, phoneIsValid]);
 
   return (
     <div className={`flex flex-col gap-8 w-full ${props.className}`}>
