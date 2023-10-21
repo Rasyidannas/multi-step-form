@@ -61,7 +61,7 @@ function PersonalInfo(props) {
 
       personalInfoStoreHandler(data);
     }
-  }, [nameIsValid, emailIsValid, phoneIsValid]);
+  }, [nameValue, emailValue, phoneValue]);
 
   return (
     <div className={`flex flex-col gap-8 w-full ${props.className}`}>

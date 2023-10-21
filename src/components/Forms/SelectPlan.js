@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useRadio from "../../hooks/use-radio";
 import FormContext from "../../store/form-context";
 
@@ -14,6 +14,14 @@ const listPlan = [
 ];
 
 function SelectPlan(props) {
+  //this is context
+  const formCtx = useContext(FormContext);
+
+  //store handler
+  const planStoreHandler = (data) => {
+    formCtx.planStore(data);
+  };
+
   // custom hooks for plans
   const {
     value: planValue,
@@ -22,13 +30,21 @@ function SelectPlan(props) {
     valueChangeHandler: planChangeHandler,
   } = useRadio();
 
-  //this is context
-  const formCtx = useContext(FormContext);
+  //this for store data to Context
+  useEffect(() => {
+    const getPlan = listPlan.filter((item) => item.name === planValue);
 
-  //store handler
-  const planStoreHandler = (data) => {
-    // formCtx.onStore(data)
-  };
+    if (planValue.length !== 0) {
+      const data = {
+        plan: planValue,
+        price: getPlan[0].price,
+      };
+
+      planStoreHandler(data);
+    }
+  }, [planValue]);
+
+  console.log(formCtx);
 
   return (
     <div className={`flex flex-col gap-8 w-full ${props.className}`}>

@@ -22,9 +22,16 @@ const formReducer = (state, action) => {
   }
 
   if (action.type === "PLAN") {
-    //add logic for tottal price and list plan
 
-    return {...state, plan: action.plan}
+    let newTotalPrice;
+
+    if(state.totalPrice > 0) {
+      newTotalPrice = 0 + action.plan.price
+    }else {
+      newTotalPrice = state.totalPrice + action.plan.price;
+    }
+
+    return {...state, plan: action.plan, totalPrice: newTotalPrice}
   }
 
   if(action.type === "ADDS") {}

@@ -18,14 +18,14 @@ const radioStateReducer = (state, action) => {
   return state;
 };
 
-const useRadio = (defaultValue) => {
+const useRadio = () => {
   const [radioState, dispatch] = useReducer(
     radioStateReducer,
     initialRadioState
   );
 
   const valueChangeHandler = (event) => {
-    dispatch({ type: "INPUT", value: defaultValue ?? event.target.value });
+    dispatch({ type: "INPUT", value: event.target.value });
   };
 
   const radioBlurHandler = () => {
