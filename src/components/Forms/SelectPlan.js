@@ -22,6 +22,9 @@ function SelectPlan(props) {
     formCtx.planStore(data);
   };
 
+  //yearly payment
+  const yearlyPaymentTime = formCtx.paymentTime === "yearly"
+
   // custom hooks for plans
   const {
     value: planValue,
@@ -33,11 +36,12 @@ function SelectPlan(props) {
   //this for store data to Context
   useEffect(() => {
     const getPlan = listPlan.filter((item) => item.name === planValue);
+    const getPrice = yearlyPaymentTime ? getPlan[0].price * 10 : getPlan[0].price
 
     if (planValue.length !== 0) {
       const data = {
         plan: planValue,
-        price: getPlan[0].price,
+        price: getPrice,
       };
 
       planStoreHandler(data);
@@ -76,7 +80,7 @@ function SelectPlan(props) {
                   {item.name}
                 </div>
                 <div className="small-text text-cool-gray">
-                  ${item.price}/mo
+                  ${yearlyPaymentTime ? item.price * 10 : item.price}/mo
                 </div>
               </label>
             </div>
