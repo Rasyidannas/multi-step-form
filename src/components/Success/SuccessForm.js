@@ -1,8 +1,8 @@
 import ThankYouIcon from "../Icons/ThankYou";
 
-function SuccessForm() {
+function SuccessForm(props) {
   return (
-    <div className="mx-auto my-auto text-center flex flex-col items-center gap-4">
+    <div className={`mx-auto mt-20 md:my-auto text-center flex flex-col items-center gap-4 ${props.className}`}>
       <div className="inline-block">
         <ThankYouIcon />
       </div>

@@ -4,7 +4,7 @@ function SideNav(props) {
   return (
     <>
       <ul
-        className={`side-nav p-8 flex flex-col gap-6 rounded-2xl w-1/3 h-full ${props.className}`}
+        className={`absolute md:relative top-0 left-0 side-nav p-8 flex flex-row md:flex-col justify-center md:justify-start gap-6 rounded-none md:rounded-2xl h-1/5 md:h-full ${props.className}`}
       >
         {listTitle.map((title, i) => (
           <li key={i} className="flex gap-4 items-center">
@@ -17,7 +17,7 @@ function SideNav(props) {
             >
               <span className="font-bold small-text">{i + 1}</span>
             </div>
-            <div>
+            <div className="hidden md:block">
               <span className="text-cool-gray small-text uppercase">
                 Step {i + 1}
               </span>
