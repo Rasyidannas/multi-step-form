@@ -28,11 +28,16 @@ export default function App() {
     return setFormActive((prevState) => (prevState > 0 ? --prevState : 3));
   };
 
+  //handler for submit
+  const submitHandler = (event) => {
+    event.preventDefault();
+  }
+
   return (
     <FormProvider>
       <Card className="flex w-4/5 h-screen mx-auto app rounded-3xl">
         <SideNav className="flex-none" currForm={formActive} />
-        <form className="flex flex-col items-end justify-between flex-1 w-8/12 mx-12 mt-8 mb-4 overflow-hidden">
+        <form className="flex flex-col items-end justify-between flex-1 w-8/12 mx-12 mt-8 mb-4 overflow-hidden" onSubmit={submitHandler}>
           <div
             className="flex w-full transition-all duration-300"
             style={{ transform: `translateX(-${formActive * 100}%)` }}
