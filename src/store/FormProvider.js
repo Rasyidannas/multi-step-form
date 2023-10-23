@@ -6,7 +6,7 @@ const defaultFormState = {
   email: "",
   phone: "",
   plan: {},
-  add: [],
+  adds: [],
   paymentTime: "monthly",
   totalPrice: 0,
 };

@@ -50,7 +50,6 @@ function PersonalInfo(props) {
     reset: phoneReset,
   } = useInput(isPhone);
 
-  //this for store data to Context
   useEffect(() => {
     if (nameIsValid && emailIsValid && phoneIsValid) {
       const data = {
@@ -59,7 +58,14 @@ function PersonalInfo(props) {
         phone: phoneValue,
       };
 
+      //this to props
+      props.formIsValid(true);
+
+      //this for store data to Context
       personalInfoStoreHandler(data);
+    } else {
+      //this to props
+      props.formIsValid(false);
     }
   }, [nameValue, emailValue, phoneValue]);
 

@@ -84,6 +84,10 @@
   li {
     list-style: none;
   }
+
+  button:disabled{
+    @apply bg-purplish-blue
+  }
 }
 
 @layer components {

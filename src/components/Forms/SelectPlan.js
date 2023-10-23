@@ -8,9 +8,27 @@ import ProIcon from "../Icons/Pro";
 import TogglePayment from "./TogglePayment";
 
 const listPlan = [
-  { name: "arcade", priceMonthly: 9, priceYearly: 90, icon: ArcadeIcon, value: "arcade" },
-  { name: "advanced", priceMonthly: 12, priceYearly: 120, icon: AdvancedIcon, value: "advanced" },
-  { name: "pro", priceMonthly: 15, priceYearly: 150, icon: ProIcon, value: "pro" },
+  {
+    name: "arcade",
+    priceMonthly: 9,
+    priceYearly: 90,
+    icon: ArcadeIcon,
+    value: "arcade",
+  },
+  {
+    name: "advanced",
+    priceMonthly: 12,
+    priceYearly: 120,
+    icon: AdvancedIcon,
+    value: "advanced",
+  },
+  {
+    name: "pro",
+    priceMonthly: 15,
+    priceYearly: 150,
+    icon: ProIcon,
+    value: "pro",
+  },
 ];
 
 function SelectPlan(props) {
@@ -23,7 +41,7 @@ function SelectPlan(props) {
   };
 
   //yearly payment
-  const yearlyPaymentTime = formCtx.paymentTime === "yearly"
+  const yearlyPaymentTime = formCtx.paymentTime === "yearly";
 
   // custom hooks for plans
   const {
@@ -33,21 +51,28 @@ function SelectPlan(props) {
     valueChangeHandler: planChangeHandler,
   } = useRadio();
 
-  //this for store data to Context
   useEffect(() => {
     if (planValue.length !== 0) {
       //this is for get data from listPlan
       const getPlan = listPlan.find((item) => item.name === planValue);
-      const getPriceMonthly = getPlan[0].priceMonthly;
-      const getPriceYearly = getPlan[0].priceYearly;
-      
-      const data = {
-        plan: planValue,
+      const getPlanName = getPlan.name
+      const getPriceMonthly = getPlan.priceMonthly;
+      const getPriceYearly = getPlan.priceYearly;
+
+      const plan = {
+        name: getPlanName,
         priceMonthly: getPriceMonthly,
         priceYearly: getPriceYearly,
       };
 
-      planStoreHandler(data);
+      //this for props
+      props.formIsValid(true);
+
+      //this for store data to Context
+      planStoreHandler(plan);
+    } else {
+      //this for props
+      props.formIsValid(false);
     }
   }, [planValue]);
 
@@ -81,7 +106,10 @@ function SelectPlan(props) {
                   {item.name}
                 </div>
                 <div className="small-text text-cool-gray">
-                  ${yearlyPaymentTime ? `${item.priceYearly}/yr` : `${item.priceMonthly}/mo`}
+                  $
+                  {yearlyPaymentTime
+                    ? `${item.priceYearly}/yr`
+                    : `${item.priceMonthly}/mo`}
                 </div>
               </label>
             </div>

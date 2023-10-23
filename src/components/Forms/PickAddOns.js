@@ -7,19 +7,22 @@ const addOnsList = [
     name: "Online service",
     desc: "Access to multiplayer games",
     value: "online-serivce",
-    price: 1,
+    priceMonthly: 1,
+    priceYearly: 10,
   },
   {
     name: "Large storage",
     desc: "Extra 1TB of cloud save",
     value: "large-storage",
-    price: 2,
+    priceMonthly: 2,
+    priceYearly: 20,
   },
   {
     name: "Customizable profile",
     desc: "Custom theme on your profile",
     value: "customizable-profile",
-    price: 2,
+    priceMonthly: 2,
+    priceYearly: 20,
   },
 ];
 
@@ -32,6 +35,9 @@ function PickAddOns(props) {
     formCtx.addStore(adds);
   };
 
+  //yearly payment
+  const yearlyPaymentTime = formCtx.paymentTime === "yearly";
+
   //custom hooks for adds
   const {
     value: addValue,
@@ -40,15 +46,30 @@ function PickAddOns(props) {
     valueChangeHandler: addChangeHandler,
   } = useCheckbox();
 
-  //this is for store data to Context
   useEffect(() => {
     if (addValue.length) {
       //get data for addOnsList
-      const getAdd = addValue.map((item) =>
+      const getAdds = addValue.map((item) =>
         addOnsList.find((add) => item === add.value)
       );
+      
+      const transformAdds = []
+      for(const key in getAdds) {
+        transformAdds.push({
+          name: getAdds[key].name,
+          priceMonthly: getAdds[key].priceMonthly,
+          priceYearly: getAdds[key].priceYearly,
+        })
+      }
 
-      addStoreHandler(getAdd);
+      //this for props
+      props.formIsValid(true);
+
+      //this is for store data to Context
+      addStoreHandler(transformAdds);
+    } else {
+      //this for props
+      props.formIsValid(false);
     }
   }, [addValue]);
 
@@ -83,7 +104,9 @@ function PickAddOns(props) {
                   <p className="text-cool-gray">{item.desc}</p>
                 </div>
                 <span className="ml-auto text-purplish-blue">
-                  ${item.price}/mo
+                  ${yearlyPaymentTime
+                    ? `${item.priceYearly}/yr`
+                    : `${item.priceMonthly}/mo`}
                 </span>
               </label>
             </li>

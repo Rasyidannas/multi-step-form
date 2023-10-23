@@ -13,6 +13,9 @@ import Button from "./components/UI/Button";
 
 export default function App() {
   //validation for each form component
+  const[infoValid, setInfoValid] = useState(false)
+  const[planValid, setPlanValid] = useState(false)
+  const[addValid, setAddValid] = useState(false)
 
   const [formActive, setFormActive] = useState(0);
 
@@ -34,9 +37,9 @@ export default function App() {
             className="flex w-full transition-all duration-300"
             style={{ transform: `translateX(-${formActive * 100}%)` }}
           >
-            <PersonalInfo className="flex-none p-2" />
-            <SelectPlan className="flex-none p-2" />
-            <PickAddOns className="flex-none p-2" />
+            <PersonalInfo className="flex-none p-2" formIsValid={(valid) => setInfoValid(valid)} />
+            <SelectPlan className="flex-none p-2" formIsValid={(valid) => setPlanValid(valid)} />
+            <PickAddOns className="flex-none p-2" formIsValid={(valid) => setAddValid(valid)}/>
             <FinishingUp
               className="flex-none p-2"
               onChange={() => setFormActive(1)}
@@ -58,6 +61,11 @@ export default function App() {
                 type="button"
                 className="ml-auto text-white bg-marine-blue"
                 onClick={nextHandler}
+                disabled={
+                    formActive === 0 && !infoValid ||
+                    formActive === 1 && !planValid ||
+                    formActive === 2 && !addValid
+                  }
               >
                 Next Step
               </Button>
