@@ -1,11 +1,11 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import FormContext from "./form-context";
 
 const defaultFormState = {
   name: "",
   email: "",
   phone: "",
-  plan: "",
+  plan: {},
   add: [],
   paymentTime: "monthly",
   totalPrice: 0,
@@ -22,22 +22,15 @@ const formReducer = (state, action) => {
   }
 
   if (action.type === "PLAN") {
-
-    let newTotalPrice;
-
-    if(state.totalPrice > 0) {
-      newTotalPrice = 0 + action.plan.price
-    }else {
-      newTotalPrice = state.totalPrice + action.plan.price;
-    }
-
-    return {...state, plan: action.plan, totalPrice: newTotalPrice}
+    return { ...state, plan: action.plan };
   }
 
-  if(action.type === "ADDS") {}
+  if (action.type === "ADDS") {
+    return { ...state, adds: action.adds };
+  }
 
-  if(action.type === "PAYMENT") {
-    return {...state, paymentTime: action.text}
+  if (action.type === "PAYMENT") {
+    return { ...state, paymentTime: action.text };
   }
 
   return defaultFormState;
@@ -58,12 +51,12 @@ const FormProvider = (props) => {
   };
 
   const addStoreHandler = (adds) => {
-    dispatchFormAction({ type:"ADDS", adds: adds })
-  }
+    dispatchFormAction({ type: "ADDS", adds: adds });
+  };
 
   const paymentStoreHandler = (text) => {
-    dispatchFormAction({ type: "PAYMENT", text:text })
-  }
+    dispatchFormAction({ type: "PAYMENT", text: text });
+  };
 
   const formContext = {
     name: formState.name,
@@ -76,7 +69,7 @@ const FormProvider = (props) => {
     infoStore: infoStoreHandler,
     planStore: planStoreHandler,
     addStore: addStoreHandler,
-    paymentStore: paymentStoreHandler
+    paymentStore: paymentStoreHandler,
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import useRadio from "../../hooks/use-radio";
 import FormContext from "../../store/form-context";
 
@@ -8,9 +8,9 @@ import ProIcon from "../Icons/Pro";
 import TogglePayment from "./TogglePayment";
 
 const listPlan = [
-  { name: "arcade", price: 9, icon: ArcadeIcon, value: "arcade" },
-  { name: "advanced", price: 12, icon: AdvancedIcon, value: "advanced" },
-  { name: "pro", price: 15, icon: ProIcon, value: "pro" },
+  { name: "arcade", priceMonthly: 9, priceYearly: 90, icon: ArcadeIcon, value: "arcade" },
+  { name: "advanced", priceMonthly: 12, priceYearly: 120, icon: AdvancedIcon, value: "advanced" },
+  { name: "pro", priceMonthly: 15, priceYearly: 150, icon: ProIcon, value: "pro" },
 ];
 
 function SelectPlan(props) {
@@ -35,20 +35,21 @@ function SelectPlan(props) {
 
   //this for store data to Context
   useEffect(() => {
-    const getPlan = listPlan.filter((item) => item.name === planValue);
-    const getPrice = yearlyPaymentTime ? getPlan[0].price * 10 : getPlan[0].price
-
     if (planValue.length !== 0) {
+      //this is for get data from listPlan
+      const getPlan = listPlan.find((item) => item.name === planValue);
+      const getPriceMonthly = getPlan[0].priceMonthly;
+      const getPriceYearly = getPlan[0].priceYearly;
+      
       const data = {
         plan: planValue,
-        price: getPrice,
+        priceMonthly: getPriceMonthly,
+        priceYearly: getPriceYearly,
       };
 
       planStoreHandler(data);
     }
   }, [planValue]);
-
-  console.log(formCtx);
 
   return (
     <div className={`flex flex-col gap-8 w-full ${props.className}`}>
@@ -80,7 +81,7 @@ function SelectPlan(props) {
                   {item.name}
                 </div>
                 <div className="small-text text-cool-gray">
-                  ${yearlyPaymentTime ? item.price * 10 : item.price}/mo
+                  ${yearlyPaymentTime ? `${item.priceYearly}/yr` : `${item.priceMonthly}/mo`}
                 </div>
               </label>
             </div>

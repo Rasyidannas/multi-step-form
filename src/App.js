@@ -12,6 +12,8 @@ import SuccessForm from "./components/Success/SuccessForm";
 import Button from "./components/UI/Button";
 
 export default function App() {
+  //validation for each form component
+
   const [formActive, setFormActive] = useState(0);
 
   //handler for next slide form
